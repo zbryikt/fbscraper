@@ -1,7 +1,10 @@
 main = ($scope, $http) ->
   uid = ""
-  accessToken = ""
+  $scope.accessToken = ""
   $scope.wall = []
+  $scope.page-id = \NtuNewsEForum
+  $scope.running = false
+  $scope.finish = false
   FB.init do
     appId: "1490131354539691"
     status: true
@@ -14,7 +17,8 @@ main = ($scope, $http) ->
     FB.get-login-status (res) ->
       console.log "response..."
       if res.status == "connected" =>
-        {uid,accessToken} := res.auth-response{userID, accessToken}
+        {uid,accessToken} = res.auth-response{userID, accessToken}
+        $scope.$apply -> $scope.access-token = access-token
         console.log access-token
       else
         console.log "please login"
@@ -24,7 +28,11 @@ main = ($scope, $http) ->
       console.log data
       console.log data.paging.next
       $scope.wall ++= data.data
-      if data.paging and data.paging.next => set-timeout (-> get-wall data.paging.next), 100
+      if data.paging and data.paging.next => 
+        set-timeout (-> get-wall data.paging.next), 100
+      else
+        $scope.finish = true
+        $scope.running = false
 
   $ \#FBLogin .click ->
     FB.login (-> 
@@ -33,4 +41,5 @@ main = ($scope, $http) ->
 
   get-access-token!
   $ \#show .click ->
-    get-wall "https://graph.facebook.com/NtuNewsEForum/feed?access_token=#{access-token}"
+    $scope.running = true
+    get-wall "https://graph.facebook.com/#{$scope.page-id}/feed?access_token=#{$scope.access-token}"

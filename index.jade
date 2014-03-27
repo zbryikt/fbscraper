@@ -8,16 +8,21 @@ doctype html
 html(lang="en")
   head(prefix="og: http://ogp.me/ns#")
     meta(charset="utf-8")
-    title template
+    title fbscraper
     // libraries
     include library.jade
     // custom files
     link(rel="stylesheet",type="text/css",href="index.css")
     script(type="text/javascript",src="index.js")
-  body(ng-app,ng-controller="main")
+    body(ng-app,ng-controller="main",ng-class="{'active':running,'done':finish}")
     script(src="http://connect.facebook.net/zh_TW/all.js")
     #fb-root
-    input(id="FBLogin",type="button",value="login")
-    input(id="show",type="button",value="show")
-    div(ng-repeat="post in wall")
-      .title {{post.message}}
+    input(id="FBLogin",type="button",value="login",ng-show="!accessToken")
+    input(id="show",type="button",value="show",ng-show="accessToken")
+    input(ng-model="pageId",ng-show="accessToken")
+    img.loading(src="loading.gif",ng-show="running")
+    div(ng-show="finihs") 抓完了
+    .post(ng-repeat="post in wall")
+      .content {{post.message}}
+      .date {{post.created_time}}
+    div(ng-show="finihs") 抓完了

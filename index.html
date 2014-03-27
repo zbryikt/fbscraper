@@ -2,7 +2,7 @@
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8">
-    <title>template</title>
+    <title>fbscraper</title>
     <!-- libraries-->
     <script type="text/javascript" src="assets/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="assets/d3js/3.3.11/d3.v3.min.js"></script>
@@ -12,14 +12,17 @@
     <!-- custom files-->
     <link rel="stylesheet" type="text/css" href="index.css">
     <script type="text/javascript" src="index.js"></script>
-  </head>
-  <body ng-app ng-controller="main">
+    <body ng-app ng-controller="main" ng-class="{'active':running,'done':finish}"></body>
     <script src="http://connect.facebook.net/zh_TW/all.js"></script>
     <div id="fb-root"></div>
-    <input id="FBLogin" type="button" value="login">
-    <input id="show" type="button" value="show">
-    <div ng-repeat="post in wall">
-      <div class="title">{{post.message}}</div>
+    <input id="FBLogin" type="button" value="login" ng-show="!accessToken">
+    <input id="show" type="button" value="show" ng-show="accessToken">
+    <input ng-model="pageId" ng-show="accessToken"><img src="loading.gif" ng-show="running" class="loading">
+    <div ng-show="finihs">抓完了</div>
+    <div ng-repeat="post in wall" class="post">
+      <div class="content">{{post.message}}</div>
+      <div class="date">{{post.created_time}}</div>
     </div>
-  </body>
+    <div ng-show="finihs">抓完了</div>
+  </head>
 </html>
