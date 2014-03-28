@@ -41,7 +41,7 @@ html(lang="en")
         br
         .btn.btn-success.btn-lg.anim(ng-click="login()",ng-class="{'invis':accessToken}") Login Facebook to Backup
         .next
-          .btn.btn-success.btn-lg.anim.invis(ng-click="login()",ng-class="{'invis':!accessToken}") Backup Your Wall
+          .btn.btn-success.btn-lg.anim.invis(ng-click="startGetWall(true)",ng-class="{'invis':!accessToken}") Backup Your Wall
           loading.anim.invis(ng-class="{'invis':!loading}")
     #subbanner
       | You want to keep all your footprint.

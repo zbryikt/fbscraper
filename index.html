@@ -41,7 +41,7 @@
       <div class="ib">Backup Your Wall.<br>Now.<br>
         <div ng-click="login()" ng-class="{'invis':accessToken}" class="btn btn-success btn-lg anim">Login Facebook to Backup</div>
         <div class="next">
-          <div ng-click="login()" ng-class="{'invis':!accessToken}" class="btn btn-success btn-lg anim invis">Backup Your Wall</div>
+          <div ng-click="startGetWall(true)" ng-class="{'invis':!accessToken}" class="btn btn-success btn-lg anim invis">Backup Your Wall</div>
           <loading ng-class="{'invis':!loading}" class="anim invis"></loading>
         </div>
       </div>
