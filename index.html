@@ -12,22 +12,95 @@
     <script type="text/javascript" src="assets/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="assets/d3js/3.3.11/d3.v3.min.js"></script>
     <script type="text/javascript" src="assets/angular/1.2.3/angular.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="assets/semantic-ui/0.9.5/css/semantic.min.css">
-    <script type="text/javascript" src="assets/semantic-ui/0.9.5/js/semantic.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap/3.0.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="assets/bootstrap/3.0.2/js/bootstrap.min.js"></script>
     <!-- custom files-->
+    <link rel="stylesheet" type="text/css" href="bootstrap.simplex.min.css">
+    <link rel="stylesheet" type="text/css" href="ajax.css">
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="gradient.css">
+    <script type="text/javascript" src="angular-animate.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
-    <body ng-app ng-controller="main" ng-class="{'active':running,'done':finish}"></body>
-    <script src="http://connect.facebook.net/zh_TW/all.js"></script>
-    <div id="fb-root"></div>
-    <input id="FBLogin" type="button" value="login" ng-show="!accessToken">
-    <input id="show" type="button" value="show" ng-show="accessToken">
-    <input ng-model="pageId" ng-show="accessToken"><img src="loading.gif" ng-show="running" class="loading">
-    <div ng-show="finihs">抓完了</div>
+  </head>
+  <body ng-app="core" ng-controller="main" ng-class="{'active':running,'done':finish}">
+    <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"><a href="#" class="navbar-brand"><img src="logo.png">FB Scraper</a></div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav pull-right">
+            <li class="anim profile"><a href="#">
+                <div class="avatar"></div>
+                <div class="name">anonymous</div></a></li>
+            <li ng-show="!accessToken" class="logon"><a href="#" ng-click="login()">Login</a></li>
+            <li ng-show="accessToken" class="logon ng-hide"><a href="#" ng-click="logout()">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="banner">
+      <div class="ib">Backup Your Wall.<br>Now.<br>
+        <div ng-click="login()" ng-class="{'invis':accessToken}" class="btn btn-success btn-lg anim">Login Facebook to Backup</div>
+        <div class="next">
+          <div ng-click="login()" ng-class="{'invis':!accessToken}" class="btn btn-success btn-lg anim invis">Backup Your Wall</div>
+          <loading ng-class="{'invis':!loading}" class="anim invis"></loading>
+        </div>
+      </div>
+    </div>
+    <div id="subbanner">You want to keep all your footprint.<br>And we can help.</div>
+    <div id="features">
+      <div class="row">
+        <div class="col-md-4">
+          <div delay-bk="offline-browsing.png" class="picto delay"></div>
+          <div class="title">Offline Browsing</div>
+          <div class="desc">Keep and look up useful information of your favorite fan pages at any time.</div>
+        </div>
+        <div class="col-md-4 main">
+          <div delay-bk="one-click.png" class="picto delay"></div>
+          <div class="title">With One Click</div>
+          <div class="desc">You don't bother to study cumbersome document, install software, or fill in forms. Just one click, and all your data are kept.</div>
+        </div>
+        <div class="col-md-4">
+          <div delay-bk="online-backup.png" class="picto delay"></div>
+          <div class="title">Online Backup</div>
+          <div class="desc">Backup your data in our online storage, and export to almost all popular online content management services.</div>
+        </div>
+      </div>
+    </div>
+    <div id="panel">
+      <div ng-click="startGetWall(true)" class="btn btn-success btn-lg">Backup My Wall Now</div>
+      <div ng-click="setFanpage(true)" class="btn btn-danger btn-lg">Backup Fan Pages</div>
+      <div ng-class="{'invis':!isFanpage}" class="fanpage-url form-group anim invis">
+        <label>Desired Fan Page URL</label>
+        <div class="input-group">
+          <input type="input" ng-model="fanpage" placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts" class="form-control"><span class="input-group-btn">
+            <button type="button" ng-click="startGetWall()" class="btn btn-default">Download</button></span>
+        </div>
+      </div>
+    </div>
+    <div id="content"></div>
+    <div ng-repeat="b in blah" class="animation">{{b}}</div>
+    <div ng-show="finish">抓完了</div>
     <div ng-repeat="post in wall" class="post">
       <div class="content">{{post.message}}</div>
       <div class="date">{{post.created_time}}</div>
     </div>
-    <div ng-show="finihs">抓完了</div>
-  </head>
+    <div ng-show="finish">抓完了</div>
+    <div class="credit">
+      <div class="item">
+        "Click", Ahmed Trochilidae, BY-CC 3.0
+        http://thenounproject.com/term/click/39120/
+      </div>
+      <div class="item">
+        "Book", Olivier Guin, BY-CC 3.0
+        http://thenounproject.com/term/book/5526/
+      </div>
+      <div class="item">
+        "Cloud Download", irene hoffman, BY-CC 3.0
+        http://thenounproject.com/term/cloud-download/18257/
+      </div>
+    </div>
+    <div id="footer"><a href="#">Term of Use</a> | <a href="#">Privacy Policy</a> | <a href="#">About Us</a></div>
+    <script src="http://connect.facebook.net/zh_TW/all.js"></script>
+    <div id="fb-root"></div>
+  </body>
 </html>

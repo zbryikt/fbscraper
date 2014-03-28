@@ -4,17 +4,12 @@ html, body {
   width: 100%;
   height: 100%; }
 
-body.active {
-  background: #ffeeee; }
-
-body.done {
-  background: #eeffee; }
-
 .post {
   padding: 20px;
   margin: 10px;
   border: 1px solid #cccccc;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); }
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  background: white; }
   .post .content {
     margin-bottom: 5px;
     white-space: pre-line; }
@@ -28,3 +23,157 @@ body.done {
   position: fixed;
   top: 10px;
   right: 50px; }
+
+.navbar-default {
+  margin-bottom: 0px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); }
+
+.navbar-brand img {
+  margin-top: -6px;
+  vertical-align: top;
+  margin-right: 8px; }
+
+#subbanner {
+  background: #ff9922;
+  text-align: center;
+  color: white;
+  font-size: 3em;
+  padding: 30px;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.6);
+  height: 190px; }
+
+#features {
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: center; }
+  #features .col-md-4 {
+    padding: 20px; }
+  #features .picto {
+    width: 150px;
+    height: 150px;
+    margin: 10px auto; }
+  #features .title {
+    font-size: 3em;
+    font-family: calibri, tahoma; }
+  #features .desc {
+    font-size: 1.5em; }
+  #features .col-md-4.main {
+    margin-top: -20px;
+    background: white;
+    height: 450px;
+    box-shadow: 0 -3px 3px rgba(0, 0, 0, 0.1); }
+
+#panel {
+  text-align: center;
+  padding: 50px 0; }
+  #panel .fanpage-url {
+    position: relative;
+    margin: 20px auto;
+    width: 60%;
+    border-radius: 10px;
+    padding: 30px 60px 50px;
+    border: 1px solid #cccccc;
+    background: white; }
+    #panel .fanpage-url:after {
+      content: " ";
+      border-top: 1px solid #cccccc;
+      border-left: 1px solid #cccccc;
+      width: 24px;
+      height: 24px;
+      display: block;
+      -webkit-transform: rotate(45deg);
+      background: white;
+      position: absolute;
+      top: -12px;
+      left: 61%; }
+  #panel .anim {
+    transition: opacity 0.5s linear, visibility 0s linear 0s, height 0.5s, padding 0.5s;
+    opacity: 1;
+    height: 145px;
+    padding: 30px 60px 50px;
+    visibility: visible; }
+  #panel .anim.invis {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    visibility: hidden;
+    transition: opacity 0.5s linear, visibility 0s linear 0.5s, height 0.5s, padding 0.5s; }
+
+#footer {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-top: 1px solid #cccccc; }
+  #footer a {
+    margin: 0 10px; }
+
+#content {
+  height: 10px; }
+
+#banner {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 80px;
+  font-weight: 900;
+  font-family: tahoma;
+  background: url(banner.jpg) center center;
+  height: 500px;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 3px 7px rgba(0, 0, 0, 0.7); }
+  #banner .ib {
+    position: relative;
+    top: 100px; }
+  #banner .next {
+    margin-top: -115px; }
+  #banner loading {
+    margin: -100px auto 0; }
+
+loading {
+  width: 100px;
+  display: block; }
+
+.anim {
+  transition: opacity 0.5s linear, visibility 0s linear 0s;
+  opacity: 1;
+  visibility: visible; }
+
+.anim.invis {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s linear, visibility 0s linear 0.5s; }
+
+.navbar {
+  height: 55px;
+  border-bottom: 5px solid #ff9922; }
+  .navbar .pull-right li {
+    border-left: 1px solid #dddddd; }
+  .navbar li.profile a {
+    padding-bottom: 4px;
+    padding-left: 13px; }
+  .navbar li a, .navbar .navbar-brand {
+    margin-top: 5px;
+    margin-bottom: 5px; }
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  margin-top: -6px;
+  background: #999999;
+  border-radius: 3px;
+  display: inline-block;
+  vertical-align: top; }
+
+.name {
+  margin-left: 3px;
+  display: inline-block; }
+
+.logon {
+  width: 80px; }
+
+.delay {
+  opacity: 0;
+  -webkit-transition: opacity 0.8s;
+  transition: opacity 0.8s; }
+
+.delay.visible {
+  opacity: 1; }

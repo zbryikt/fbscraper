@@ -4,16 +4,12 @@ html,body
   width: 100%
   height: 100%
 
-body.active
-  background: #fee
-body.done
-  background: #efe
-
 .post
   padding: 20px
   margin: 10px
   border: 1px solid #ccc
   box-shadow: 0 0 3px rgba(0,0,0,0.5)
+  background: #fff
   .content
     margin-bottom: 5px
     white-space: pre-line
@@ -26,3 +22,159 @@ body.done
   position: fixed
   top: 10px
   right: 50px
+
+.navbar-default
+  margin-bottom: 0px
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6)
+
+.navbar-brand img
+  margin-top: -6px
+  vertical-align: top
+  margin-right: 8px
+
+#subbanner
+  background: #f92
+  text-align: center
+  color: #fff
+  font-size: 3em
+  padding: 30px
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.6)
+  height: 190px
+
+#features
+  margin-left: 50px
+  margin-right: 50px
+  text-align: center
+  .col-md-4
+    padding: 20px
+  .picto
+    width: 150px
+    height: 150px
+    margin: 10px auto
+  .title
+    font-size: 3em
+    font-family: calibri, tahoma
+  .desc
+    font-size: 1.5em
+  .col-md-4.main
+    margin-top: -20px
+    background: #fff
+    height: 450px
+    box-shadow: 0 -3px 3px rgba(0,0,0,0.1)
+
+#panel
+  text-align: center
+  padding: 50px 0
+  .fanpage-url
+    position: relative
+    margin: 20px auto
+    width: 60%
+    border-radius: 10px
+    padding: 30px 60px 50px
+    border: 1px solid #ccc
+    background: #fff
+    &:after
+      content: " "
+      border-top: 1px solid #ccc
+      border-left: 1px solid #ccc
+      width: 24px
+      height: 24px
+      display: block
+      -webkit-transform: rotate(45deg)
+      background: #fff
+      position: absolute
+      top: -12px
+      left: 61%
+
+  .anim
+    transition: opacity 0.5s linear, visibility 0s linear 0s, height 0.5s, padding 0.5s
+    opacity: 1
+    height: 145px
+    padding: 30px 60px 50px
+    visibility: visible
+
+  .anim.invis
+    opacity: 0
+    height: 0
+    padding: 0
+    visibility: hidden
+    transition: opacity 0.5s linear, visibility 0s linear 0.5s, height 0.5s, padding 0.5s
+
+
+#footer
+  margin-top: 20px
+  padding: 12px 20px
+  border-top: 1px solid #ccc
+  a
+    margin: 0 10px
+
+#content
+  height: 10px
+
+#banner
+  margin-top: 40px
+  text-align: center
+  font-size: 80px
+  font-weight: 900
+  font-family: tahoma
+  background: url(banner.jpg) center center
+  height: 500px
+  width: 100%
+  color: rgba(255,255,255,0.8)
+  text-shadow: 0 3px 7px rgba(0,0,0,0.7)
+  .ib
+    position: relative
+    top: 100px
+  .next
+    margin-top: -115px
+  loading
+    margin: -100px auto 0
+
+loading
+  width: 100px
+  display: block
+
+.anim
+  transition: opacity 0.5s linear, visibility 0s linear 0s
+  opacity: 1
+  visibility: visible
+
+.anim.invis
+  opacity: 0
+  visibility: hidden
+  transition: opacity 0.5s linear, visibility 0s linear 0.5s
+
+.navbar 
+  height: 55px
+  border-bottom: 5px solid #f92
+  .pull-right li
+    border-left: 1px solid #ddd
+  li.profile a
+    padding-bottom: 4px
+    padding-left: 13px
+  li a, .navbar-brand
+    margin-top: 5px
+    margin-bottom: 5px
+    
+
+.avatar
+  width: 32px
+  height: 32px
+  margin-top: -6px
+  background: #999
+  border-radius: 3px
+  display: inline-block
+  vertical-align: top
+.name
+  margin-left: 3px
+  display: inline-block
+
+.logon
+  width: 80px
+
+.delay
+  opacity: 0
+  -webkit-transition: opacity 0.8s
+  transition: opacity 0.8s
+.delay.visible
+  opacity: 1
