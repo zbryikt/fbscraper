@@ -49,7 +49,7 @@ angular.module \core, <[ngAnimate]>
 
     get-wall = (url) ->
       $http.get url .success (data) ->
-        console.log data.data
+        console.log data
         $scope.wall ++= data.data
         if data.paging and data.paging.next => 
           set-timeout (-> get-wall data.paging.next), 100

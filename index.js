@@ -75,7 +75,7 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
   };
   getWall = function(url){
     return $http.get(url).success(function(data){
-      console.log(data.data);
+      console.log(data);
       $scope.wall = $scope.wall.concat(data.data);
       if (data.paging && data.paging.next) {
         return setTimeout(function(){
