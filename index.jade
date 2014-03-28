@@ -72,11 +72,13 @@ html(lang="en")
             button.btn.btn-default(type="button",ng-click="startGetWall()") Download
     #content
     div.animation(ng-repeat="b in blah") {{b}}
-    div(ng-show="finish") 抓完了
+    loading.anim.invis.center(ng-class="{'invis':!running}")
+    div.finish(ng-show="finish") Complete.
     .post(ng-repeat="post in wall")
       .content {{post.message}}
       .date {{post.created_time}}
-    div(ng-show="finish") 抓完了
+    loading.anim.invis.center(ng-class="{'invis':!running}")
+    div.finish(ng-show="finish") Complete.
     #credit
       .title Attributions
       .list

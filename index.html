@@ -79,12 +79,14 @@
     </div>
     <div id="content"></div>
     <div ng-repeat="b in blah" class="animation">{{b}}</div>
-    <div ng-show="finish">抓完了</div>
+    <loading ng-class="{'invis':!running}" class="anim invis center"></loading>
+    <div ng-show="finish" class="finish">Complete.</div>
     <div ng-repeat="post in wall" class="post">
       <div class="content">{{post.message}}</div>
       <div class="date">{{post.created_time}}</div>
     </div>
-    <div ng-show="finish">抓完了</div>
+    <loading ng-class="{'invis':!running}" class="anim invis center"></loading>
+    <div ng-show="finish" class="finish">Complete.</div>
     <div id="credit">
       <div class="title">Attributions</div>
       <div class="list">
