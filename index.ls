@@ -49,6 +49,7 @@ angular.module \core, <[ngAnimate]>
 
     get-wall = (url) ->
       $http.get url .success (data) ->
+        console.log data.data
         $scope.wall ++= data.data
         if data.paging and data.paging.next => 
           set-timeout (-> get-wall data.paging.next), 100
@@ -56,8 +57,13 @@ angular.module \core, <[ngAnimate]>
           $scope.finish = true
           $scope.running = false
 
+    $scope.enlarge = -> if it => it.to-string!replace /_s\./, "_n."
     $scope.set-fanpage = -> $scope.is-fanpage = it
-    $scope.logout = -> # TODO
+    $scope.logout = -> if $scope.access-token => FB.logout ->
+      $scope.username = ""
+      $scope.access-token = ""
+      $scope.loading = false
+      $scope.running = false
     $scope.login = ->
       FB.login (-> 
         get-access-token!  

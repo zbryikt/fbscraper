@@ -18,6 +18,14 @@ html, body {
   .post .date {
     color: #999999;
     font-size: 0.8em; }
+  .post .story {
+    margin-bottom: 10px;
+    color: #555555;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); }
+    .post .story i.glyphicon {
+      font-size: 1.2em;
+      color: #ff9922;
+      margin: 5px; }
 
 .loading {
   width: 64px;
@@ -133,8 +141,6 @@ html, body {
   #banner .ib {
     position: relative;
     top: 100px; }
-  #banner .next {
-    margin-top: -115px; }
   #banner loading {
     margin: -100px auto 0; }
 
@@ -143,14 +149,19 @@ loading {
   display: block; }
 
 .anim {
-  transition: opacity 0.5s linear, visibility 0s linear 0s;
+  transition: opacity 0.5s linear, visibility 0s linear 0s, display 0s linear 0s;
   opacity: 1;
-  visibility: visible; }
+  visibility: visible;
+  display: block; }
+
+.anim.btn {
+  display: inline-block; }
 
 .anim.invis {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s linear, visibility 0s linear 0.5s; }
+  display: none;
+  transition: opacity 0.5s linear, visibility 0s linear 0.5s, display 0s linear 0.5s; }
 
 .navbar {
   height: 55px;

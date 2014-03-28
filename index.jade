@@ -76,6 +76,10 @@ html(lang="en")
     div.finish(ng-show="finish") Complete.
     .post(ng-repeat="post in wall")
       .content {{post.message}}
+      .story(ng-show="post.story") 
+        i.glyphicon.glyphicon-bell
+        | {{post.story}}
+      .pic(ng-show="post.picture"): img(ng-src="{{enlarge(post.picture)}}")
       .date {{post.created_time}}
     loading.anim.invis.center(ng-class="{'invis':!running}")
     div.finish(ng-show="finish") Complete.

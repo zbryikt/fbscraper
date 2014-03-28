@@ -75,6 +75,7 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
   };
   getWall = function(url){
     return $http.get(url).success(function(data){
+      console.log(data.data);
       $scope.wall = $scope.wall.concat(data.data);
       if (data.paging && data.paging.next) {
         return setTimeout(function(){
@@ -86,10 +87,24 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
       }
     });
   };
+  $scope.enlarge = function(it){
+    if (it) {
+      return it.toString().replace(/_s\./, "_n.");
+    }
+  };
   $scope.setFanpage = function(it){
     return $scope.isFanpage = it;
   };
-  $scope.logout = function(){};
+  $scope.logout = function(){
+    if ($scope.accessToken) {
+      return FB.logout(function(){
+        $scope.username = "";
+        $scope.accessToken = "";
+        $scope.loading = false;
+        return $scope.running = false;
+      });
+    }
+  };
   $scope.login = function(){
     return FB.login(function(){
       return getAccessToken();

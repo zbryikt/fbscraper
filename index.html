@@ -83,6 +83,8 @@
     <div ng-show="finish" class="finish">Complete.</div>
     <div ng-repeat="post in wall" class="post">
       <div class="content">{{post.message}}</div>
+      <div ng-show="post.story" class="story"><i class="glyphicon glyphicon-bell"></i>{{post.story}}</div>
+      <div ng-show="post.picture" class="pic"><img ng-src="{{enlarge(post.picture)}}"></div>
       <div class="date">{{post.created_time}}</div>
     </div>
     <loading ng-class="{'invis':!running}" class="anim invis center"></loading>
