@@ -28,9 +28,9 @@
         <div class="navbar-header"><a href="#" class="navbar-brand"><img src="logo.png">FB Scraper</a></div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
-            <li class="anim profile"><a href="#">
-                <div class="avatar"></div>
-                <div class="name">anonymous</div></a></li>
+            <li ng-class="{'invis':!username}" class="anim profile invis"><a href="#">
+                <div class="avatar"><img ng-src="http://graph.facebook.com/{{uid}}/picture?type=small" ng-show="uid"></div>
+                <div class="name">{{username}}</div></a></li>
             <li ng-show="!accessToken" class="logon"><a href="#" ng-click="login()">Login</a></li>
             <li ng-show="accessToken" class="logon ng-hide"><a href="#" ng-click="logout()">Logout</a></li>
           </ul>
@@ -85,20 +85,24 @@
       <div class="date">{{post.created_time}}</div>
     </div>
     <div ng-show="finish">抓完了</div>
-    <div class="credit">
-      <div class="item">
-        "Click", Ahmed Trochilidae, BY-CC 3.0
-        http://thenounproject.com/term/click/39120/
-      </div>
-      <div class="item">
-        "Book", Olivier Guin, BY-CC 3.0
-        http://thenounproject.com/term/book/5526/
-      </div>
-      <div class="item">
-        "Cloud Download", irene hoffman, BY-CC 3.0
-        http://thenounproject.com/term/cloud-download/18257/
+    <div id="credit">
+      <div class="title">Attributions</div>
+      <div class="list">
+        <div class="item">
+          "Click", Ahmed Trochilidae, BY-CC 3.0
+          http://thenounproject.com/term/click/39120/
+        </div>
+        <div class="item">
+          "Book", Olivier Guin, BY-CC 3.0
+          http://thenounproject.com/term/book/5526/
+        </div>
+        <div class="item">
+          "Cloud Download", irene hoffman, BY-CC 3.0
+          http://thenounproject.com/term/cloud-download/18257/
+        </div>
       </div>
     </div>
+    <div id="footer-top"></div>
     <div id="footer"><a href="#">Term of Use</a> | <a href="#">Privacy Policy</a> | <a href="#">About Us</a></div>
     <script src="http://connect.facebook.net/zh_TW/all.js"></script>
     <div id="fb-root"></div>

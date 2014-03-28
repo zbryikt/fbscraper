@@ -27,9 +27,10 @@ html(lang="en")
             | FB Scraper
         .collapse.navbar-collapse
           ul.nav.navbar-nav.pull-right
-            li.anim.profile: a(href="#")
+            li.anim.profile.invis(ng-class="{'invis':!username}"): a(href="#")
               .avatar
-              .name anonymous
+                img(ng-src="http://graph.facebook.com/{{uid}}/picture?type=small",ng-show="uid")
+              .name {{username}}
             li.logon(ng-show="!accessToken"): a(href="#",ng-click="login()") Login
             li.logon.ng-hide(ng-show="accessToken"): a(href="#",ng-click="logout()") Logout
     #banner
@@ -76,16 +77,19 @@ html(lang="en")
       .content {{post.message}}
       .date {{post.created_time}}
     div(ng-show="finish") 抓完了
-    .credit
-      .item 
-        | "Click", Ahmed Trochilidae, BY-CC 3.0
-        | http://thenounproject.com/term/click/39120/
-      .item 
-        | "Book", Olivier Guin, BY-CC 3.0
-        | http://thenounproject.com/term/book/5526/
-      .item 
-        | "Cloud Download", irene hoffman, BY-CC 3.0
-        | http://thenounproject.com/term/cloud-download/18257/
+    #credit
+      .title Attributions
+      .list
+        .item 
+          | "Click", Ahmed Trochilidae, BY-CC 3.0
+          | http://thenounproject.com/term/click/39120/
+        .item 
+          | "Book", Olivier Guin, BY-CC 3.0
+          | http://thenounproject.com/term/book/5526/
+        .item 
+          | "Cloud Download", irene hoffman, BY-CC 3.0
+          | http://thenounproject.com/term/cloud-download/18257/
+    #footer-top
     #footer
       a(href="#") Term of Use
       |  | 

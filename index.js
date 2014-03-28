@@ -25,8 +25,9 @@ x$.directive('loading', function(){
   };
 });
 x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $interval, $http){
-  var uid, getAccessToken, getWall;
-  uid = "";
+  var getAccessToken, getWall;
+  $scope.uid = "";
+  $scope.username = "";
   $scope.fanpage = "";
   $scope.isFanpage = false;
   $scope.accessToken = "";
@@ -46,17 +47,24 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     console.log("get login status...");
     $scope.loading = true;
     return FB.getLoginStatus(function(res){
-      var ref$, uid, accessToken;
+      var ref$, userID, accessToken;
       console.log("response...");
       if (res.status === "connected") {
+        console.log(res);
         ref$ = {
           userID: (ref$ = res.authResponse).userID,
           accessToken: ref$.accessToken
-        }, uid = ref$.uid, accessToken = ref$.accessToken;
+        }, userID = ref$.userID, accessToken = ref$.accessToken;
         $scope.$apply(function(){
-          return $scope.accessToken = accessToken;
+          $scope.uid = userID;
+          $scope.accessToken = accessToken;
+          return console.log($scope.uid);
         });
-        console.log(accessToken);
+        $http.get("http://graph.facebook.com/" + $scope.uid + "/profile").success(function(data){
+          if (data.data && data.data[0]) {
+            return $scope.username = data.data[0].name;
+          }
+        });
       } else {
         console.log("please login");
       }

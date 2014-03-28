@@ -12,7 +12,8 @@ angular.module \core, <[ngAnimate]>
     template: '<div class="bubblingG"><span class="bubblingG_1"></span><span class="bubblingG_2"></span><span class="bubblingG_3"></span></div>'
     link: (scope, e, attrs, ctrl) ->
   ..controller \main, <[$scope $interval $http]> ++ ($scope, $interval, $http) ->
-    uid = ""
+    $scope.uid = ""
+    $scope.username = ""
     $scope.fanpage = ""
     $scope.is-fanpage = false
     $scope.accessToken = ""
@@ -34,9 +35,14 @@ angular.module \core, <[ngAnimate]>
       FB.get-login-status (res) ->
         console.log "response..."
         if res.status == "connected" =>
-          {uid,accessToken} = res.auth-response{userID, accessToken}
-          $scope.$apply -> $scope.access-token = access-token
-          console.log access-token
+          console.log res
+          {userID,accessToken} = res.auth-response{userID, accessToken}
+          $scope.$apply ->
+            $scope.uid = userID
+            $scope.access-token = access-token
+            console.log $scope.uid
+          $http.get "http://graph.facebook.com/#{$scope.uid}/profile" .success (data) ->
+            if data.data and data.data.0 => $scope.username = data.data.0.name
         else
           console.log "please login"
         $scope.$apply -> $scope.loading = false

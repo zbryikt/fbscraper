@@ -100,11 +100,19 @@ html, body {
     transition: opacity 0.5s linear, visibility 0s linear 0.5s, height 0.5s, padding 0.5s; }
 
 #footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
   margin-top: 20px;
   padding: 12px 20px;
   border-top: 1px solid #cccccc; }
   #footer a {
     margin: 0 10px; }
+
+#footer-top {
+  width: 100%;
+  height: 50px; }
 
 #content {
   height: 10px; }
@@ -162,6 +170,10 @@ loading {
   border-radius: 3px;
   display: inline-block;
   vertical-align: top; }
+  .avatar img {
+    width: 32px;
+    height: 32px;
+    border-radius: 3px; }
 
 .name {
   margin-left: 3px;
@@ -177,3 +189,10 @@ loading {
 
 .delay.visible {
   opacity: 1; }
+
+#credit {
+  border-top: 1px solid #cccccc;
+  padding: 10px 20px 5px 20px; }
+  #credit .title {
+    font-size: 1.2em;
+    font-weight: 900; }
