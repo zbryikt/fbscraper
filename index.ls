@@ -97,3 +97,34 @@ angular.module \core, <[ngAnimate]>
       content += $(\#posts)html! + "</body></html>"
       html-to-download = btoa unescape encodeURIComponent content
       link-html.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{html-to-download}"
+    attribution-data = [
+      '<a href="http://thenounproject.com/term/click/39120/"</a>"Click", Ahmed Trochilidae, BY-CC 3.0'
+      '<a href="http://thenounproject.com/term/book/5526/"</a>"Book", Olivier Guin, BY-CC 3.0'
+      '<a href="http://thenounproject.com/term/cloud-download/18257/"</a>"Cloud Download", irene hoffman, BY-CC 3.0'
+      '<a href="http://thenounproject.com/term/stone-wall/36294/"</a>"Stone Wall", Albert Vila, BY-CC 3.0'
+      '<a href="http://thenounproject.com/term/scraper/25913/"</a>"Paint Scraper", factor[e] design initiative, BY-CC 3.0'
+      '<a href="http://thenounproject.com/term/star/21280/"</a>"Star", Nick Abrams, BY-CC 3.0'
+    ]
+    $(\#attribution)popover do
+      placement: \top
+      html: \true
+      title: "Attributions to Icons"
+      content: attribution-data.join \<br>
+    $(\#eula)popover do
+      placement: \top
+      html: \true
+      title: "Term of Use"
+      content: "Coming Soon"
+
+    $(\#privacy)popover do
+      placement: \top
+      html: \true
+      title: "Privacy Policy"
+      content: "Coming Soon"
+
+    $(\#about)popover do
+      placement: \top
+      html: \true
+      title: "About Us"
+      content: "Coming Soon"
+

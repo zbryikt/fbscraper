@@ -166,7 +166,8 @@ html, body {
   padding: 12px 20px;
   border-top: 1px solid #cccccc; }
   #footer a {
-    margin: 0 10px; }
+    margin: 0 10px;
+    cursor: pointer; }
 
 #footer-top {
   width: 100%;
@@ -269,6 +270,11 @@ loading {
   margin: 0 auto 30px;
   border-top: 1px solid #cccccc;
   border-bottom: 1px solid #cccccc; }
+  #posts .empty-post {
+    text-align: center;
+    color: #999999;
+    background: #eeeeee;
+    padding: 30px; }
 
 #credit {
   border-top: 1px solid #cccccc;
@@ -280,3 +286,6 @@ loading {
 loading.center {
   width: 85px;
   margin: 0 auto; }
+
+.popover {
+  max-width: 680px; }

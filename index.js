@@ -25,7 +25,7 @@ x$.directive('loading', function(){
   };
 });
 x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $interval, $http){
-  var getAccessToken, getWall;
+  var getAccessToken, getWall, attributionData;
   $scope.uid = "";
   $scope.username = "";
   $scope.fanpage = "";
@@ -144,7 +144,7 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
       return getWall("https://graph.facebook.com/" + $scope.pageId + "/feed?access_token=" + $scope.accessToken);
     }
   };
-  return $scope.generateDownload = function(){
+  $scope.generateDownload = function(){
     var linkJson, jsonToDownload, linkHtml, content, htmlToDownload;
     linkJson = $('#download-json');
     jsonToDownload = btoa(unescape(encodeURIComponent(JSON.stringify($scope.wall))));
@@ -156,4 +156,29 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     htmlToDownload = btoa(unescape(encodeURIComponent(content)));
     return linkHtml.attr('href', "data:application/octet-stream;charset=utf-8;base64," + htmlToDownload);
   };
+  attributionData = ['<a href="http://thenounproject.com/term/click/39120/"</a>"Click", Ahmed Trochilidae, BY-CC 3.0', '<a href="http://thenounproject.com/term/book/5526/"</a>"Book", Olivier Guin, BY-CC 3.0', '<a href="http://thenounproject.com/term/cloud-download/18257/"</a>"Cloud Download", irene hoffman, BY-CC 3.0', '<a href="http://thenounproject.com/term/stone-wall/36294/"</a>"Stone Wall", Albert Vila, BY-CC 3.0', '<a href="http://thenounproject.com/term/scraper/25913/"</a>"Paint Scraper", factor[e] design initiative, BY-CC 3.0', '<a href="http://thenounproject.com/term/star/21280/"</a>"Star", Nick Abrams, BY-CC 3.0'];
+  $('#attribution').popover({
+    placement: 'top',
+    html: 'true',
+    title: "Attributions to Icons",
+    content: attributionData.join('<br>')
+  });
+  $('#eula').popover({
+    placement: 'top',
+    html: 'true',
+    title: "Term of Use",
+    content: "Coming Soon"
+  });
+  $('#privacy').popover({
+    placement: 'top',
+    html: 'true',
+    title: "Privacy Policy",
+    content: "Coming Soon"
+  });
+  return $('#about').popover({
+    placement: 'top',
+    html: 'true',
+    title: "About Us",
+    content: "Coming Soon"
+  });
 }));

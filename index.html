@@ -94,7 +94,8 @@
         <div style="text-align:left;margin-top: 1em" ng-show="finish" class="col-sm-6">Download As<br><a id="download-json" download="wall.json" href="#">JSON</a> |  <a id="download-html" download="wall.html" href="#">HTML</a></div>
       </div>
     </div>
-    <div id="posts" ng-show="running || finish">
+    <div id="posts">
+      <div ng-show="!running &amp;&amp; !finish" class="empty-post">( no post fetched yet.. press backup now! )</div>
       <div ng-repeat="post in wall" class="post">
         <div class="content">{{post.message}}</div>
         <div ng-show="post.story" class="story"><i class="glyphicon glyphicon-bell"></i>{{post.story}}</div>
@@ -102,37 +103,8 @@
         <div class="date">{{post.created_time}}</div>
       </div>
     </div>
-    <div id="credit">
-      <div class="title">Attributions</div>
-      <div class="list">
-        <div class="item">
-          "Click", Ahmed Trochilidae, BY-CC 3.0
-          http://thenounproject.com/term/click/39120/
-        </div>
-        <div class="item">
-          "Book", Olivier Guin, BY-CC 3.0
-          http://thenounproject.com/term/book/5526/
-        </div>
-        <div class="item">
-          "Cloud Download", irene hoffman, BY-CC 3.0
-          http://thenounproject.com/term/cloud-download/18257/
-        </div>
-        <div class="item">
-          "Stone Wall", Albert Vila, BY-CC 3.0
-          http://thenounproject.com/term/stone-wall/36294/
-        </div>
-        <div class="item">
-          "Paint Scraper", factor[e] design initiative, BY-CC 3.0
-          http://thenounproject.com/term/scraper/25913/
-        </div>
-        <div class="item">
-          "Star", Nick Abrams, BY-CC 3.0
-          http://thenounproject.com/term/star/21280/
-        </div>
-      </div>
-    </div>
     <div id="footer-top"></div>
-    <div id="footer"><a href="#">Term of Use</a> | <a href="#">Privacy Policy</a> | <a href="#">About Us</a></div>
+    <div id="footer"><a id="eula">Term of Use</a> | <a id="privacy">Privacy Policy</a> | <a id="attribution">Attribution</a> | <a id="about">About Us</a></div>
     <script src="http://connect.facebook.net/zh_TW/all.js"></script>
     <div id="fb-root"></div>
   </body>

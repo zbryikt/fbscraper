@@ -90,7 +90,9 @@ html(lang="en")
           a#download-json(download="wall.json",href="#") JSON
           |  |  
           a#download-html(download="wall.html",href="#") HTML
-    #posts(ng-show="running || finish")
+    #posts
+      .empty-post(ng-show="!running && !finish")
+        | ( no post fetched yet.. press backup now! )
       .post(ng-repeat="post in wall")
         .content {{post.message}}
         .story(ng-show="post.story") 
@@ -99,33 +101,14 @@ html(lang="en")
         .pic(ng-show="post.picture"): img(ng-src="{{enlarge(post.picture)}}")
         .date {{post.created_time}}
 
-    #credit
-      .title Attributions
-      .list
-        .item 
-          | "Click", Ahmed Trochilidae, BY-CC 3.0
-          | http://thenounproject.com/term/click/39120/
-        .item 
-          | "Book", Olivier Guin, BY-CC 3.0
-          | http://thenounproject.com/term/book/5526/
-        .item 
-          | "Cloud Download", irene hoffman, BY-CC 3.0
-          | http://thenounproject.com/term/cloud-download/18257/
-        .item 
-          | "Stone Wall", Albert Vila, BY-CC 3.0
-          | http://thenounproject.com/term/stone-wall/36294/
-        .item 
-          | "Paint Scraper", factor[e] design initiative, BY-CC 3.0
-          | http://thenounproject.com/term/scraper/25913/
-        .item 
-          | "Star", Nick Abrams, BY-CC 3.0
-          | http://thenounproject.com/term/star/21280/
     #footer-top
     #footer
-      a(href="#") Term of Use
+      a#eula Term of Use
       |  | 
-      a(href="#") Privacy Policy
+      a#privacy Privacy Policy
       |  | 
-      a(href="#") About Us
+      a#attribution Attribution
+      |  | 
+      a#about About Us
     script(src="http://connect.facebook.net/zh_TW/all.js")
     #fb-root
