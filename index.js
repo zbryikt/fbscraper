@@ -20,7 +20,7 @@ x$.directive('delayBk', function(){
 x$.directive('loading', function(){
   return {
     restrict: 'E',
-    template: '<div class="bubblingG"><span class="bubblingG_1"></span><span class="bubblingG_2"></span><span class="bubblingG_3"></span></div>',
+    templateUrl: '/loading.html',
     link: function(scope, e, attrs, ctrl){}
   };
 });
@@ -114,8 +114,17 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     });
   };
   getAccessToken();
-  $scope.startGetWall = function(isMe){
-    var pageId;
+  $scope.startGetWall = function(isMe, scroll){
+    var des, pageId;
+    if ($scope.running) {
+      return;
+    }
+    if (scroll) {
+      des = $('#backup-btn').offset().top - 200;
+      $('body').scrollTo(des, des, {
+        queue: true
+      });
+    }
     if (isMe) {
       $scope.isFanpage = false;
     }
@@ -131,6 +140,7 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     if (pageId) {
       $scope.pageId = pageId;
       $scope.running = true;
+      $scope.finish = false;
       return getWall("https://graph.facebook.com/" + $scope.pageId + "/feed?access_token=" + $scope.accessToken);
     }
   };

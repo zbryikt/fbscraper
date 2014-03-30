@@ -1,0 +1,67 @@
+@mixin circle($id,$left,$top,$deg,$delay)
+  .ajax.circle .circle#{$id}
+    top: #{$top}px
+    left: #{$left}px
+    .inner-circle
+      -webkit-animation: enlarge#{$id} 1s ease-in-out 0s infinite
+      -webkit-animation-delay: $delay
+      -webkit-transform: rotate(#{$deg}deg) scaleY(2)
+      animation: enlarge#{$id} 1s ease-in-out 0s infinite
+      animation-delay: $delay
+      transform: rotate(#{$deg}deg) scaleY(2)
+
+  @-webkit-keyframes enlarge#{$id}
+    0%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,0) scaleY(1) 
+      opacity: 1
+    25%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,-20px) scaleY(2) 
+      opacity: 0.9
+    50%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,-40px) scaleY(4) 
+      opacity: 0.8
+    75%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,-20px) scaleY(2) 
+      opacity: 0.6
+    100%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,0) scaleY(1) 
+      opacity: 0.3
+
+  @keyframes enlarge#{$id}
+    0%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,0) scaleY(1) 
+      opacity: 1
+    25%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,-20px) scaleY(2) 
+      opacity: 0.9
+    50%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,-40px) scaleY(4) 
+      opacity: 0.8
+    75%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,-20px) scaleY(2) 
+      opacity: 0.6
+    100%
+      -webkit-transform: rotate(#{$deg}deg) translate(0,0) scaleY(1) 
+      opacity: 0.3
+
+
+.ajax.circle
+  width: 100px
+  height: 100px
+  position: relative
+  .circle
+    position: absolute
+    .inner-circle
+      width: 20px
+      height: 20px
+      background: #000
+      border-radius: 10px
+
+@include circle(1,50,0,0,0s)
+@include circle(2,85,15,45,0.125s)
+@include circle(3,100,50,90,0.25s)
+@include circle(4,85,85,135,0.375s)
+@include circle(5,50,100,180,0.5s)
+@include circle(6,15,85,225,0.625s)
+@include circle(7,0,50,270,0.75s)
+@include circle(8,15,15,315,0.875s)

@@ -14,10 +14,11 @@ html(lang="en")
     // custom files
     link(rel="icon",type="image/png",href="/scraper.png")
     link(rel="stylesheet",type="text/css",href="bootstrap.simplex.min.css")
-    link(rel="stylesheet",type="text/css",href="ajax.css")
+    link(rel="stylesheet",type="text/css",href="loading.css")
     link(rel="stylesheet",type="text/css",href="index.css")
     link(rel="stylesheet",type="text/css",href="gradient.css")
     script(type="text/javascript",src="angular-animate.min.js")
+    script(type="text/javascript",src="scrollto.min.js")
     script(type="text/javascript",src="index.js")
   body(ng-app="core",ng-controller="main",ng-class="{'active':running,'done':finish}")
     nav.navbar.navbar-default.navbar-fixed-top(role="navigation")
@@ -41,7 +42,7 @@ html(lang="en")
         | Now.
         br
         .backup.invis(ng-class="{'invis':!accessToken}")
-          .btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup Your Wall
+          .btn.btn-success.btn-lg(ng-click="startGetWall(true,true)",ng-class="{'disabled':running}") Backup Your Wall
         .login(ng-class="{'invis':accessToken}")
           .btn.btn-success.btn-lg(ng-click="login()") Login Facebook to Backup
     #subbanner
@@ -60,13 +61,14 @@ html(lang="en")
           .desc You don't bother to study cumbersome document, install software, or fill in forms. Just one click, and all your data are kept.
         .col-md-4
           .picto.delay(delay-bk="online-backup.png")
+          .coming-soon(delay-bk="coming-soon.png")
           .title Online Backup
           .desc Backup your data in our online storage, and export to almost all popular online content management services.
     #panel
       .login(ng-class="{'invis':accessToken}")
         .btn.btn-success.btn-lg(ng-click="login()") Login Facebook to Backup
       .backup.invis(ng-class="{'invis':!accessToken}")
-        .btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup My Wall Now
+        #backup-btn.btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup My Wall Now
         .btn.btn-danger.btn-lg(ng-click="setFanpage(true)",ng-class="{'disabled':running}") Backup Fan Pages
       #fanpage-url.form-group.anim.invis(ng-class="{'invis':!isFanpage}")
         label Desired Fan Page URL
@@ -74,19 +76,20 @@ html(lang="en")
           input.form-control(type="input",ng-model="fanpage",placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts")
           span.input-group-btn
             button.btn.btn-default(type="button",ng-click="startGetWall()") Download
-    #loading-mark.anim.invis(ng-class="{'invis':!running || finish}")
-      img(src="ajax-loader.gif")
-    #load-indicator
-      div.finish(ng-show="finish")
-        .row
-          .col-sm-6(style="text-align:right")
-            i.glyphicon.glyphicon-ok-sign
-          .col-sm-6(style="text-align:left;margin-top: 1em")
-            | Download As
-            br
-            a#download-json(download="wall.json",href="#") JSON
-            |  |  
-            a#download-html(download="wall.html",href="#") HTML
+    loading#loading-mark.anim.invis(ng-class="{'invis':!running || finish}")
+    #download.anim(ng-class="{'invis':!running && !finish,'running':running}",ng-cloak)
+      .row
+        .col-sm-6(style="text-align:right")
+          i.glyphicon.glyphicon-time(ng-hide="finish || !running")
+          i.glyphicon.glyphicon-ok-sign(ng-hide="!finish")
+        .col-sm-6.wait(style="text-align:left;margin-top: 1em",ng-show="running")
+          | Wait ...
+        .col-sm-6(style="text-align:left;margin-top: 1em",ng-show="finish")
+          | Download As
+          br
+          a#download-json(download="wall.json",href="#") JSON
+          |  |  
+          a#download-html(download="wall.html",href="#") HTML
     #posts(ng-show="running || finish")
       .post(ng-repeat="post in wall")
         .content {{post.message}}

@@ -17,10 +17,11 @@
     <!-- custom files-->
     <link rel="icon" type="image/png" href="/scraper.png">
     <link rel="stylesheet" type="text/css" href="bootstrap.simplex.min.css">
-    <link rel="stylesheet" type="text/css" href="ajax.css">
+    <link rel="stylesheet" type="text/css" href="loading.css">
     <link rel="stylesheet" type="text/css" href="index.css">
     <link rel="stylesheet" type="text/css" href="gradient.css">
     <script type="text/javascript" src="angular-animate.min.js"></script>
+    <script type="text/javascript" src="scrollto.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </head>
   <body ng-app="core" ng-controller="main" ng-class="{'active':running,'done':finish}">
@@ -41,7 +42,7 @@
     <div id="banner">
       <div class="ib">Backup Your Wall.<br>Now.<br>
         <div ng-class="{'invis':!accessToken}" class="backup invis">
-          <div ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup Your Wall</div>
+          <div ng-click="startGetWall(true,true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup Your Wall</div>
         </div>
         <div ng-class="{'invis':accessToken}" class="login">
           <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
@@ -63,6 +64,7 @@
         </div>
         <div class="col-md-4">
           <div delay-bk="online-backup.png" class="picto delay"></div>
+          <div delay-bk="coming-soon.png" class="coming-soon"></div>
           <div class="title">Online Backup</div>
           <div class="desc">Backup your data in our online storage, and export to almost all popular online content management services.</div>
         </div>
@@ -73,7 +75,7 @@
         <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
       </div>
       <div ng-class="{'invis':!accessToken}" class="backup invis">
-        <div ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup My Wall Now</div>
+        <div id="backup-btn" ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup My Wall Now</div>
         <div ng-click="setFanpage(true)" ng-class="{'disabled':running}" class="btn btn-danger btn-lg">Backup Fan Pages</div>
       </div>
       <div id="fanpage-url" ng-class="{'invis':!isFanpage}" class="form-group anim invis">
@@ -84,13 +86,12 @@
         </div>
       </div>
     </div>
-    <div id="loading-mark" ng-class="{'invis':!running || finish}" class="anim invis"><img src="ajax-loader.gif"></div>
-    <div id="load-indicator">
-      <div ng-show="finish" class="finish">
-        <div class="row">
-          <div style="text-align:right" class="col-sm-6"><i class="glyphicon glyphicon-ok-sign"></i></div>
-          <div style="text-align:left;margin-top: 1em" class="col-sm-6">Download As<br><a id="download-json" download="wall.json" href="#">JSON</a> |  <a id="download-html" download="wall.html" href="#">HTML</a></div>
-        </div>
+    <loading id="loading-mark" ng-class="{'invis':!running || finish}" class="anim invis"></loading>
+    <div id="download" ng-class="{'invis':!running &amp;&amp; !finish,'running':running}" ng-cloak class="anim">
+      <div class="row">
+        <div style="text-align:right" class="col-sm-6"><i ng-hide="finish || !running" class="glyphicon glyphicon-time"></i><i ng-hide="!finish" class="glyphicon glyphicon-ok-sign"></i></div>
+        <div style="text-align:left;margin-top: 1em" ng-show="running" class="col-sm-6 wait">Wait ...</div>
+        <div style="text-align:left;margin-top: 1em" ng-show="finish" class="col-sm-6">Download As<br><a id="download-json" download="wall.json" href="#">JSON</a> |  <a id="download-html" download="wall.html" href="#">HTML</a></div>
       </div>
     </div>
     <div id="posts" ng-show="running || finish">

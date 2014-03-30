@@ -9,7 +9,7 @@ angular.module \core, <[ngAnimate]>
         e.toggle-class \visible
   ..directive \loading, -> do
     restrict: \E
-    template: '<div class="bubblingG"><span class="bubblingG_1"></span><span class="bubblingG_2"></span><span class="bubblingG_3"></span></div>'
+    template-url: '/loading.html'
     link: (scope, e, attrs, ctrl) ->
   ..controller \main, <[$scope $interval $http]> ++ ($scope, $interval, $http) ->
     $scope.uid = ""
@@ -71,7 +71,11 @@ angular.module \core, <[ngAnimate]>
       ), {scope: ""}
 
     get-access-token!
-    $scope.start-get-wall = (is-me) ->
+    $scope.start-get-wall = (is-me,scroll) ->
+      if $scope.running => return
+      if scroll => 
+        des = ($(\#backup-btn)offset!top - 200)
+        $(\body)scroll-to des, des, {queue: true}
       if is-me => $scope.is-fanpage = false
       if $scope.is-fanpage =>
         page-id = /https?:\/\/[^\/]+\/([^\/?]+)\??[^/]*/.exec $scope.fanpage
@@ -81,6 +85,7 @@ angular.module \core, <[ngAnimate]>
       if page-id =>
         $scope.page-id = page-id
         $scope.running = true
+        $scope.finish = false
         get-wall "https://graph.facebook.com/#{$scope.page-id}/feed?access_token=#{$scope.access-token}"
     $scope.generate-download = ->
       link-json = $(\#download-json)
