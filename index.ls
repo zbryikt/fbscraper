@@ -56,6 +56,7 @@ angular.module \core, <[ngAnimate]>
         else
           $scope.finish = true
           $scope.running = false
+          $scope.generate-download!
 
     $scope.enlarge = -> if it => it.to-string!replace /_s\./, "_n."
     $scope.set-fanpage = -> $scope.is-fanpage = it
@@ -81,3 +82,13 @@ angular.module \core, <[ngAnimate]>
         $scope.page-id = page-id
         $scope.running = true
         get-wall "https://graph.facebook.com/#{$scope.page-id}/feed?access_token=#{$scope.access-token}"
+    $scope.generate-download = ->
+      link-json = $(\#download-json)
+      json-to-download = btoa unescape encodeURIComponent JSON.stringify $scope.wall
+      link-json.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{json-to-download}"
+      link-html = $(\#download-html)
+      content = "<html><head><meta charset='utf-8'>"
+      content += "<link rel='stylesheet' type='text/css' href='http://zbryikt.github.io/fbscraper/index.css'></head><body>"
+      content += $(\#posts)html! + "</body></html>"
+      html-to-download = btoa unescape encodeURIComponent content
+      link-html.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{html-to-download}"

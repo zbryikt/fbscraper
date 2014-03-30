@@ -39,10 +39,11 @@
     </nav>
     <div id="banner">
       <div class="ib">Backup Your Wall.<br>Now.<br>
-        <div ng-click="login()" ng-class="{'invis':accessToken}" class="btn btn-success btn-lg anim">Login Facebook to Backup</div>
-        <div class="next">
-          <div ng-click="startGetWall(true)" ng-class="{'invis':!accessToken}" class="btn btn-success btn-lg anim invis">Backup Your Wall</div>
-          <loading ng-class="{'invis':!loading}" class="anim invis"></loading>
+        <div ng-class="{'invis':!accessToken}" class="backup invis">
+          <div ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup Your Wall</div>
+        </div>
+        <div ng-class="{'invis':accessToken}" class="login">
+          <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
         </div>
       </div>
     </div>
@@ -67,9 +68,14 @@
       </div>
     </div>
     <div id="panel">
-      <div ng-click="startGetWall(true)" class="btn btn-success btn-lg">Backup My Wall Now</div>
-      <div ng-click="setFanpage(true)" class="btn btn-danger btn-lg">Backup Fan Pages</div>
-      <div ng-class="{'invis':!isFanpage}" class="fanpage-url form-group anim invis">
+      <div ng-class="{'invis':accessToken}" class="login">
+        <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
+      </div>
+      <div ng-class="{'invis':!accessToken}" class="backup invis">
+        <div ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup My Wall Now</div>
+        <div ng-click="setFanpage(true)" ng-class="{'disabled':running}" class="btn btn-danger btn-lg">Backup Fan Pages</div>
+      </div>
+      <div id="fanpage-url" ng-class="{'invis':!isFanpage}" class="form-group anim invis">
         <label>Desired Fan Page URL</label>
         <div class="input-group">
           <input type="input" ng-model="fanpage" placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts" class="form-control"><span class="input-group-btn">
@@ -77,18 +83,23 @@
         </div>
       </div>
     </div>
-    <div id="content"></div>
-    <div ng-repeat="b in blah" class="animation">{{b}}</div>
-    <loading ng-class="{'invis':!running}" class="anim invis center"></loading>
-    <div ng-show="finish" class="finish">Complete.</div>
-    <div ng-repeat="post in wall" class="post">
-      <div class="content">{{post.message}}</div>
-      <div ng-show="post.story" class="story"><i class="glyphicon glyphicon-bell"></i>{{post.story}}</div>
-      <div ng-show="post.picture" class="pic"><img ng-src="{{enlarge(post.picture)}}"></div>
-      <div class="date">{{post.created_time}}</div>
+    <div id="loading-mark" ng-class="{'invis':!running || finish}" class="anim invis"><img src="ajax-loader.gif"></div>
+    <div id="load-indicator">
+      <div ng-show="finish" class="finish">
+        <div class="row">
+          <div style="text-align:right" class="col-sm-6"><i class="glyphicon glyphicon-ok-sign"></i></div>
+          <div style="text-align:left;margin-top: 1em" class="col-sm-6">Download As<br><a id="download-json" download="wall.json" href="#">JSON</a> |  <a id="download-html" download="wall.html" href="#">HTML</a></div>
+        </div>
+      </div>
     </div>
-    <loading ng-class="{'invis':!running}" class="anim invis center"></loading>
-    <div ng-show="finish" class="finish">Complete.</div>
+    <div id="posts" ng-show="running || finish">
+      <div ng-repeat="post in wall" class="post">
+        <div class="content">{{post.message}}</div>
+        <div ng-show="post.story" class="story"><i class="glyphicon glyphicon-bell"></i>{{post.story}}</div>
+        <div ng-show="post.picture" class="pic"><img ng-src="{{enlarge(post.picture)}}"></div>
+        <div class="date">{{post.created_time}}</div>
+      </div>
+    </div>
     <div id="credit">
       <div class="title">Attributions</div>
       <div class="list">

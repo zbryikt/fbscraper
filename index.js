@@ -83,7 +83,8 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
         }, 100);
       } else {
         $scope.finish = true;
-        return $scope.running = false;
+        $scope.running = false;
+        return $scope.generateDownload();
       }
     });
   };
@@ -113,7 +114,7 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     });
   };
   getAccessToken();
-  return $scope.startGetWall = function(isMe){
+  $scope.startGetWall = function(isMe){
     var pageId;
     if (isMe) {
       $scope.isFanpage = false;
@@ -132,5 +133,17 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
       $scope.running = true;
       return getWall("https://graph.facebook.com/" + $scope.pageId + "/feed?access_token=" + $scope.accessToken);
     }
+  };
+  return $scope.generateDownload = function(){
+    var linkJson, jsonToDownload, linkHtml, content, htmlToDownload;
+    linkJson = $('#download-json');
+    jsonToDownload = btoa(unescape(encodeURIComponent(JSON.stringify($scope.wall))));
+    linkJson.attr('href', "data:application/octet-stream;charset=utf-8;base64," + jsonToDownload);
+    linkHtml = $('#download-html');
+    content = "<html><head><meta charset='utf-8'>";
+    content += "<link rel='stylesheet' type='text/css' href='http://zbryikt.github.io/fbscraper/index.css'></head><body>";
+    content += $('#posts').html() + "</body></html>";
+    htmlToDownload = btoa(unescape(encodeURIComponent(content)));
+    return linkHtml.attr('href', "data:application/octet-stream;charset=utf-8;base64," + htmlToDownload);
   };
 }));

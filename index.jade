@@ -39,10 +39,10 @@ html(lang="en")
         br
         | Now.
         br
-        .btn.btn-success.btn-lg.anim(ng-click="login()",ng-class="{'invis':accessToken}") Login Facebook to Backup
-        .next
-          .btn.btn-success.btn-lg.anim.invis(ng-click="startGetWall(true)",ng-class="{'invis':!accessToken}") Backup Your Wall
-          loading.anim.invis(ng-class="{'invis':!loading}")
+        .backup.invis(ng-class="{'invis':!accessToken}")
+          .btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup Your Wall
+        .login(ng-class="{'invis':accessToken}")
+          .btn.btn-success.btn-lg(ng-click="login()") Login Facebook to Backup
     #subbanner
       | You want to keep all your footprint.
       br
@@ -62,27 +62,39 @@ html(lang="en")
           .title Online Backup
           .desc Backup your data in our online storage, and export to almost all popular online content management services.
     #panel
-      .btn.btn-success.btn-lg(ng-click="startGetWall(true)") Backup My Wall Now
-      .btn.btn-danger.btn-lg(ng-click="setFanpage(true)") Backup Fan Pages
-      .fanpage-url.form-group.anim.invis(ng-class="{'invis':!isFanpage}")
+      .login(ng-class="{'invis':accessToken}")
+        .btn.btn-success.btn-lg(ng-click="login()") Login Facebook to Backup
+      .backup.invis(ng-class="{'invis':!accessToken}")
+        .btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup My Wall Now
+        .btn.btn-danger.btn-lg(ng-click="setFanpage(true)",ng-class="{'disabled':running}") Backup Fan Pages
+      #fanpage-url.form-group.anim.invis(ng-class="{'invis':!isFanpage}")
         label Desired Fan Page URL
         .input-group
           input.form-control(type="input",ng-model="fanpage",placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts")
           span.input-group-btn
             button.btn.btn-default(type="button",ng-click="startGetWall()") Download
-    #content
-    div.animation(ng-repeat="b in blah") {{b}}
-    loading.anim.invis.center(ng-class="{'invis':!running}")
-    div.finish(ng-show="finish") Complete.
-    .post(ng-repeat="post in wall")
-      .content {{post.message}}
-      .story(ng-show="post.story") 
-        i.glyphicon.glyphicon-bell
-        | {{post.story}}
-      .pic(ng-show="post.picture"): img(ng-src="{{enlarge(post.picture)}}")
-      .date {{post.created_time}}
-    loading.anim.invis.center(ng-class="{'invis':!running}")
-    div.finish(ng-show="finish") Complete.
+    #loading-mark.anim.invis(ng-class="{'invis':!running || finish}")
+      img(src="ajax-loader.gif")
+    #load-indicator
+      div.finish(ng-show="finish")
+        .row
+          .col-sm-6(style="text-align:right")
+            i.glyphicon.glyphicon-ok-sign
+          .col-sm-6(style="text-align:left;margin-top: 1em")
+            | Download As
+            br
+            a#download-json(download="wall.json",href="#") JSON
+            |  |  
+            a#download-html(download="wall.html",href="#") HTML
+    #posts(ng-show="running || finish")
+      .post(ng-repeat="post in wall")
+        .content {{post.message}}
+        .story(ng-show="post.story") 
+          i.glyphicon.glyphicon-bell
+          | {{post.story}}
+        .pic(ng-show="post.picture"): img(ng-src="{{enlarge(post.picture)}}")
+        .date {{post.created_time}}
+
     #credit
       .title Attributions
       .list
