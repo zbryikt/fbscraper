@@ -2,7 +2,7 @@
 <html lang="en">
   <head prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8">
-    <title>fbscraper</title>
+    <title>Facebook Scraper</title>
     <!-- libraries-->
     <meta property="og:locale" content="zh_TW">
     <meta property="og:image" content="http://zbryikt.github.io/fbscraper/thumbnail.png">
@@ -27,7 +27,7 @@
   <body ng-app="core" ng-controller="main" ng-class="{'active':running,'done':finish}">
     <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        <div class="navbar-header"><a href="#" class="navbar-brand"><img src="logo.png">FB Scraper</a></div>
+        <div class="navbar-header"><a href="#" class="navbar-brand"><img src="logo.png">Facebook Scraper</a></div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav pull-right">
             <li ng-class="{'invis':!username}" class="anim profile invis"><a href="#">
@@ -40,27 +40,27 @@
       </div>
     </nav>
     <div id="banner">
-      <div class="ib">Backup Your Wall.<br>Now.<br>
+      <div class="ib">Backup Facebook Pages.<br>Now.<br>
         <div ng-class="{'invis':!accessToken}" class="backup invis">
-          <div ng-click="startGetWall(true,true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup Your Wall</div>
+          <div ng-click="startGetWall(true,true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup Yours</div>
         </div>
         <div ng-class="{'invis':accessToken}" class="login">
           <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
         </div>
       </div>
     </div>
-    <div id="subbanner">You want to keep all your footprint.<br>And we can help.</div>
+    <div id="subbanner">You want the information on facebook<br>And we can help.</div>
     <div id="features">
       <div class="row">
         <div class="col-md-4">
           <div delay-bk="offline-browsing.png" class="picto delay"></div>
           <div class="title">Offline Browsing</div>
-          <div class="desc">Keep and look up useful information of your favorite fan pages at any time.</div>
+          <div class="desc">Keep and look up all useful information of your favorite fan pages at any time, offline.</div>
         </div>
         <div class="col-md-4 main">
           <div delay-bk="one-click.png" class="picto delay"></div>
           <div class="title">With One Click</div>
-          <div class="desc">You don't bother to study cumbersome document, install software, or fill in forms. Just one click, and all your data are kept.</div>
+          <div class="desc">You don't bother to study tedious document, install software, or fill in boring forms. Just one click, and all your data are kept.</div>
         </div>
         <div class="col-md-4">
           <div delay-bk="online-backup.png" class="picto delay"></div>
@@ -75,7 +75,7 @@
         <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
       </div>
       <div ng-class="{'invis':!accessToken}" class="backup invis">
-        <div id="backup-btn" ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup My Wall Now</div>
+        <div id="backup-btn" ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup My Feed Now</div>
         <div ng-click="setFanpage(true)" ng-class="{'disabled':running}" class="btn btn-danger btn-lg">Backup Fan Pages</div>
       </div>
       <div id="fanpage-url" ng-class="{'invis':!isFanpage}" class="form-group anim invis">

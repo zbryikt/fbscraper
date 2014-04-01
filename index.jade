@@ -8,7 +8,7 @@ doctype html
 html(lang="en")
   head(prefix="og: http://ogp.me/ns#")
     meta(charset="utf-8")
-    title fbscraper
+    title Facebook Scraper
     // libraries
     include library.jade
     // custom files
@@ -26,7 +26,7 @@ html(lang="en")
         .navbar-header
           a.navbar-brand(href="#")
             img(src="logo.png")
-            | FB Scraper
+            | Facebook Scraper
         .collapse.navbar-collapse
           ul.nav.navbar-nav.pull-right
             li.anim.profile.invis(ng-class="{'invis':!username}"): a(href="#")
@@ -37,16 +37,16 @@ html(lang="en")
             li.logon.ng-hide(ng-show="accessToken"): a(href="#",ng-click="logout()") Logout
     #banner
       .ib
-        | Backup Your Wall.
+        | Backup Facebook Pages.
         br
         | Now.
         br
         .backup.invis(ng-class="{'invis':!accessToken}")
-          .btn.btn-success.btn-lg(ng-click="startGetWall(true,true)",ng-class="{'disabled':running}") Backup Your Wall
+          .btn.btn-success.btn-lg(ng-click="startGetWall(true,true)",ng-class="{'disabled':running}") Backup Yours
         .login(ng-class="{'invis':accessToken}")
           .btn.btn-success.btn-lg(ng-click="login()") Login Facebook to Backup
     #subbanner
-      | You want to keep all your footprint.
+      | You want the information on facebook
       br
       | And we can help.
     #features
@@ -54,11 +54,11 @@ html(lang="en")
         .col-md-4
           .picto.delay(delay-bk="offline-browsing.png")
           .title Offline Browsing
-          .desc Keep and look up useful information of your favorite fan pages at any time.
+          .desc Keep and look up all useful information of your favorite fan pages at any time, offline.
         .col-md-4.main
           .picto.delay(delay-bk="one-click.png")
           .title With One Click
-          .desc You don't bother to study cumbersome document, install software, or fill in forms. Just one click, and all your data are kept.
+          .desc You don't bother to study tedious document, install software, or fill in boring forms. Just one click, and all your data are kept.
         .col-md-4
           .picto.delay(delay-bk="online-backup.png")
           .coming-soon(delay-bk="coming-soon.png")
@@ -68,7 +68,7 @@ html(lang="en")
       .login(ng-class="{'invis':accessToken}")
         .btn.btn-success.btn-lg(ng-click="login()") Login Facebook to Backup
       .backup.invis(ng-class="{'invis':!accessToken}")
-        #backup-btn.btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup My Wall Now
+        #backup-btn.btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup My Feed Now
         .btn.btn-danger.btn-lg(ng-click="setFanpage(true)",ng-class="{'disabled':running}") Backup Fan Pages
       #fanpage-url.form-group.anim.invis(ng-class="{'invis':!isFanpage}")
         label Desired Fan Page URL
