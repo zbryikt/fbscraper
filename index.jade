@@ -104,11 +104,11 @@ html(lang="en")
             i.glyphicon.glyphicon-thumbs-up
             |  x {{post.likes.data.length}}
             |  /  
-          {{post.created_time}}
+          | {{post.created_time}}
         .comments(ng-show="post.comments.data.length")
           .comment(ng-repeat="comment in post.comments.data")
             .name 
-              {{comment.from.name}}
+              | {{comment.from.name}}
               .thumb(ng-show="comment.like_count")
                 | / 
                 i.glyphicon.glyphicon-thumbs-up
