@@ -100,7 +100,19 @@
         <div class="content">{{post.message}}</div>
         <div ng-show="post.story" class="story"><i class="glyphicon glyphicon-bell"></i>{{post.story}}</div>
         <div ng-show="post.picture" class="pic"><img ng-src="{{enlarge(post.picture)}}"></div>
-        <div class="date">{{post.created_time}}</div>
+        <div class="date">
+          <div ng-show="post.likes.data.length" class="thumb"><i class="glyphicon glyphicon-thumbs-up"></i> x {{post.likes.data.length}}
+             /  
+          </div>{{post.created_time}}
+        </div>
+        <div ng-show="post.comments.data.length" class="comments">
+          <div ng-repeat="comment in post.comments.data" class="comment">
+            <div class="name">{{comment.from.name}}
+              <div ng-show="comment.like_count" class="thumb">/ <i class="glyphicon glyphicon-thumbs-up"></i> x {{comment.like_count}}</div>
+            </div>
+            <div class="content">{{comment.message}}</div>
+          </div>
+        </div>
       </div>
     </div>
     <div id="footer-top"></div>

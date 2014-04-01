@@ -151,7 +151,8 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     linkJson.attr('href', "data:application/octet-stream;charset=utf-8;base64," + jsonToDownload);
     linkHtml = $('#download-html');
     content = "<html><head><meta charset='utf-8'>";
-    content += "<link rel='stylesheet' type='text/css' href='http://zbryikt.github.io/fbscraper/index.css'></head><body>";
+    content += '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">';
+    content += "<link rel='stylesheet' type='text/css' href='http://fb.scrape4.me/index.css'></head><body>";
     content += $('#posts').html() + "</body></html>";
     htmlToDownload = btoa(unescape(encodeURIComponent(content)));
     return linkHtml.attr('href', "data:application/octet-stream;charset=utf-8;base64," + htmlToDownload);

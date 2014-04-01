@@ -289,3 +289,18 @@ loading.center {
 
 .popover {
   max-width: 680px; }
+
+.comment {
+  border-top: 1px solid #cccccc;
+  padding: 5px; }
+
+.date .thumb, .name .thumb {
+  display: inline; }
+
+.comments {
+  margin-top: 15px;
+  padding: 10px;
+  background: #f9f9f9; }
+
+.comments .comment:nth-of-type(1) {
+  border-top: none; }
