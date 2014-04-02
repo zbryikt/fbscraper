@@ -83,7 +83,7 @@ angular.module \core, <[ngAnimate]>
       else page-id = \me
       console.log page-id
       if page-id =>
-        ga \send, \event, \feed, \get, {id: page-id}
+        ga \send, \event, \feed, \get, page-id
         $scope.page-id = page-id
         $scope.running = true
         $scope.finish = false
