@@ -71,11 +71,12 @@ html(lang="en")
         #backup-btn.btn.btn-success.btn-lg(ng-click="startGetWall(true)",ng-class="{'disabled':running}") Backup My Feed Now
         .btn.btn-danger.btn-lg(ng-click="setFanpage(true)",ng-class="{'disabled':running}") Backup Fan Pages
       #fanpage-url.form-group.anim.invis(ng-class="{'invis':!isFanpage}")
-        label Desired Fan Page URL
-        .input-group
-          input.form-control(type="input",ng-model="fanpage",placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts")
-          span.input-group-btn
-            button.btn.btn-default(type="button",ng-click="startGetWall()") Download
+        .ib
+          label Desired Fan Page URL
+          .input-group
+            input.form-control(type="input",ng-model="fanpage",placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts")
+            span.input-group-btn
+              button.btn.btn-default(type="button",ng-click="startGetWall()") Download
     loading#loading-mark.anim.invis(ng-class="{'invis':!running || finish}")
     #download.anim(ng-class="{'invis':!running && !finish,'running':running}",ng-cloak)
       .row
@@ -126,3 +127,11 @@ html(lang="en")
       a#about About Us
     script(src="http://connect.facebook.net/zh_TW/all.js")
     #fb-root
+    script.
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=1490131354539691";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));

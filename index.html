@@ -83,10 +83,12 @@
         <div ng-click="setFanpage(true)" ng-class="{'disabled':running}" class="btn btn-danger btn-lg">Backup Fan Pages</div>
       </div>
       <div id="fanpage-url" ng-class="{'invis':!isFanpage}" class="form-group anim invis">
-        <label>Desired Fan Page URL</label>
-        <div class="input-group">
-          <input type="input" ng-model="fanpage" placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts" class="form-control"><span class="input-group-btn">
-            <button type="button" ng-click="startGetWall()" class="btn btn-default">Download</button></span>
+        <div class="ib">
+          <label>Desired Fan Page URL</label>
+          <div class="input-group">
+            <input type="input" ng-model="fanpage" placeholder="URL, for example: https://www.facebook.com/NtuNewsEForum?fref=ts" class="form-control"><span class="input-group-btn">
+              <button type="button" ng-click="startGetWall()" class="btn btn-default">Download</button></span>
+          </div>
         </div>
       </div>
     </div>
@@ -123,5 +125,14 @@
     <div id="footer"><a id="eula">Term of Use</a> | <a id="privacy">Privacy Policy</a> | <a id="attribution">Attribution</a> | <a id="about">About Us</a></div>
     <script src="http://connect.facebook.net/zh_TW/all.js"></script>
     <div id="fb-root"></div>
+    <script>
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1&appId=1490131354539691";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
   </body>
 </html>

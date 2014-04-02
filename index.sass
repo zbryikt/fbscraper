@@ -104,12 +104,6 @@ html,body
 
 
 #fanpage-url
-  position: relative
-  margin: 80px auto 0
-  width: 60%
-  border-radius: 10px
-  border: 1px solid #ccc
-  background: #fff
   &:after
     content: " "
     border-top: 1px solid #ccc
@@ -122,6 +116,17 @@ html,body
     position: absolute
     top: -12px
     left: 61%
+  position: relative
+  margin: 80px auto 0
+  width: 60%
+  border-radius: 10px
+  border: 1px solid #ccc
+  background: #fff
+  overflow: visible!important
+  .ib
+    width: 100%
+    height: 100%
+      overflow: hidden
 
 #fanpage-url
   height: auto
@@ -129,7 +134,7 @@ html,body
   visibility: visible
   padding: 30px 60px 50px
   opacity: 1
-  transition: height 0.5s linear, opacity 0.5s linear, padding 0.5s linear
+  transition: height 0.5s ease-in-out, opacity 0.5s linear, padding 0.5s ease-in-out
 
 #fanpage-url.invis
   height: 0
