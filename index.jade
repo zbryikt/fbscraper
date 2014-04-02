@@ -65,6 +65,7 @@ html(lang="en")
           .title Online Backup
           .desc Backup your data in our online storage, and export to almost all popular online content management services.
     #panel
+      .fb-like(data-href="http://fb.scrape4.me",data-layout="button_count",data-action="like",data-show-faces="false",data-share="true")
       .login(ng-class="{'invis':accessToken}")
         .btn.btn-success.btn-lg(ng-click="login()") Login Facebook to Backup
       .backup.invis(ng-class="{'invis':!accessToken}")

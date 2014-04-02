@@ -84,6 +84,8 @@ html, body {
 #panel {
   text-align: center;
   padding: 50px 0 0; }
+  #panel iframe {
+    z-index: 10; }
   #panel .login {
     left: 0; }
   #panel .backup {
