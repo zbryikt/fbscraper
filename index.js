@@ -138,6 +138,9 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     }
     console.log(pageId);
     if (pageId) {
+      ga('send', 'event', 'feed', 'get', {
+        id: pageId
+      });
       $scope.pageId = pageId;
       $scope.running = true;
       $scope.finish = false;
