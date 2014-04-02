@@ -44,12 +44,12 @@
       </div>
     </nav>
     <div id="banner">
-      <div class="ib">Backup Facebook Pages.<br>Now.<br>
+      <div class="ib">Scrape Facebook Wall.<br>Now.<br>
         <div ng-class="{'invis':!accessToken}" class="backup invis">
-          <div ng-click="startGetWall(true,true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup Yours</div>
+          <div ng-click="startGetWall(true,true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Scrape Yours</div>
         </div>
         <div ng-class="{'invis':accessToken}" class="login">
-          <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
+          <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Scrape</div>
         </div>
       </div>
     </div>
@@ -69,7 +69,7 @@
         <div class="col-md-4">
           <div delay-bk="online-backup.png" class="picto delay"></div>
           <div delay-bk="coming-soon.png" class="coming-soon"></div>
-          <div class="title">Online Backup</div>
+          <div class="title">Online Scraping</div>
           <div class="desc">Backup your data in our online storage, and export to almost all popular online content management services.</div>
         </div>
       </div>
@@ -77,11 +77,11 @@
     <div id="panel">
       <div data-href="http://fb.scrape4.me" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" class="fb-like"></div>
       <div ng-class="{'invis':accessToken}" class="login">
-        <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Backup</div>
+        <div ng-click="login()" class="btn btn-success btn-lg">Login Facebook to Scrape</div>
       </div>
       <div ng-class="{'invis':!accessToken}" class="backup invis">
-        <div id="backup-btn" ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Backup My Feed Now</div>
-        <div ng-click="setFanpage(true)" ng-class="{'disabled':running}" class="btn btn-danger btn-lg">Backup Fan Pages</div>
+        <div id="backup-btn" ng-click="startGetWall(true)" ng-class="{'disabled':running}" class="btn btn-success btn-lg">Scrape My Feed Now</div>
+        <div ng-click="setFanpage(true)" ng-class="{'disabled':running}" class="btn btn-danger btn-lg">Scrape Fan Pages</div>
       </div>
       <div id="fanpage-url" ng-class="{'invis':!isFanpage}" class="form-group anim invis">
         <div class="ib">
@@ -102,7 +102,7 @@
       </div>
     </div>
     <div id="posts">
-      <div ng-show="!running &amp;&amp; !finish" class="empty-post">( no post fetched yet.. press backup now! )</div>
+      <div ng-show="!running &amp;&amp; !finish" class="empty-post">( no post fetched yet.. press scrape now! )</div>
       <div ng-repeat="post in wall" class="post">
         <div class="content">{{post.message}}</div>
         <div ng-show="post.story" class="story"><i class="glyphicon glyphicon-bell"></i>{{post.story}}</div>
