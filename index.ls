@@ -87,18 +87,30 @@ angular.module \core, <[ngAnimate]>
         $scope.page-id = page-id
         $scope.running = true
         $scope.finish = false
-        get-wall "https://graph.facebook.com/#{$scope.page-id}/feed?access_token=#{$scope.access-token}"
+        get-wall "https://graph.facebook.com/#{$scope.page-id}/feed?limit=50&access_token=#{$scope.access-token}"
     $scope.generate-download = ->
       link-json = $(\#download-json)
-      json-to-download = btoa unescape encodeURIComponent JSON.stringify $scope.wall
-      link-json.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{json-to-download}"
       link-html = $(\#download-html)
-      content = "<html><head><meta charset='utf-8'>"
-      content += '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">'
-      content += "<link rel='stylesheet' type='text/css' href='http://fb.scrape4.me/index.css'></head><body>"
-      content += $(\#posts)html! + "</body></html>"
-      html-to-download = btoa unescape encodeURIComponent content
-      link-html.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{html-to-download}"
+      data-json = JSON.stringify $scope.wall
+      data-html = "<html><head><meta charset='utf-8'>" +
+      '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">' +
+      '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/index.css"></head><body>' +
+      $(\#posts)html! + '</body></html>'
+
+      # use base64 - cause chrome to crash, deprecated
+      # base-json = btoa unescape encodeURIComponent data-json
+      # base-html = btoa unescape encodeURIComponent data-html
+      # link-json.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{base-json}"
+      # link-html.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{base-html}"
+
+      # use blob url
+      blob-json = new Blob [data-json], type: 'text/json'
+      blob-html = new Blob [data-html], type: 'text/html'
+      path-json = URL.createObjectURL blob-json
+      path-html = URL.createObjectURL blob-html
+      link-json.attr \href, path-json
+      link-html.attr \href, path-html
+
     attribution-data = [
       '<a href="http://thenounproject.com/term/click/39120/"</a>"Click", Ahmed Trochilidae, BY-CC 3.0'
       '<a href="http://thenounproject.com/term/book/5526/"</a>"Book", Olivier Guin, BY-CC 3.0'

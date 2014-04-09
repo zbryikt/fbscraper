@@ -95,7 +95,10 @@ html(lang="en")
     #posts
       .empty-post(ng-show="!running && !finish")
         | ( no post fetched yet.. press scrape now! )
-      .post(ng-repeat="post in wall")
+      .empty-post(ng-show="running || finish")
+        | {{wall.length}} posts retrieved.
+
+      .ib(style="display:none"): .post(ng-repeat="post in wall")
         .content {{post.message}}
         .story(ng-show="post.story") 
           i.glyphicon.glyphicon-bell

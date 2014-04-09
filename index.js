@@ -142,21 +142,25 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
       $scope.pageId = pageId;
       $scope.running = true;
       $scope.finish = false;
-      return getWall("https://graph.facebook.com/" + $scope.pageId + "/feed?access_token=" + $scope.accessToken);
+      return getWall("https://graph.facebook.com/" + $scope.pageId + "/feed?limit=50&access_token=" + $scope.accessToken);
     }
   };
   $scope.generateDownload = function(){
-    var linkJson, jsonToDownload, linkHtml, content, htmlToDownload;
+    var linkJson, linkHtml, dataJson, dataHtml, blobJson, blobHtml, pathJson, pathHtml;
     linkJson = $('#download-json');
-    jsonToDownload = btoa(unescape(encodeURIComponent(JSON.stringify($scope.wall))));
-    linkJson.attr('href', "data:application/octet-stream;charset=utf-8;base64," + jsonToDownload);
     linkHtml = $('#download-html');
-    content = "<html><head><meta charset='utf-8'>";
-    content += '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">';
-    content += "<link rel='stylesheet' type='text/css' href='http://fb.scrape4.me/index.css'></head><body>";
-    content += $('#posts').html() + "</body></html>";
-    htmlToDownload = btoa(unescape(encodeURIComponent(content)));
-    return linkHtml.attr('href', "data:application/octet-stream;charset=utf-8;base64," + htmlToDownload);
+    dataJson = JSON.stringify($scope.wall);
+    dataHtml = "<html><head><meta charset='utf-8'>" + '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">' + '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/index.css"></head><body>' + $('#posts').html() + '</body></html>';
+    blobJson = new Blob([dataJson], {
+      type: 'text/json'
+    });
+    blobHtml = new Blob([dataHtml], {
+      type: 'text/html'
+    });
+    pathJson = URL.createObjectURL(blobJson);
+    pathHtml = URL.createObjectURL(blobHtml);
+    linkJson.attr('href', pathJson);
+    return linkHtml.attr('href', pathHtml);
   };
   attributionData = ['<a href="http://thenounproject.com/term/click/39120/"</a>"Click", Ahmed Trochilidae, BY-CC 3.0', '<a href="http://thenounproject.com/term/book/5526/"</a>"Book", Olivier Guin, BY-CC 3.0', '<a href="http://thenounproject.com/term/cloud-download/18257/"</a>"Cloud Download", irene hoffman, BY-CC 3.0', '<a href="http://thenounproject.com/term/stone-wall/36294/"</a>"Stone Wall", Albert Vila, BY-CC 3.0', '<a href="http://thenounproject.com/term/scraper/25913/"</a>"Paint Scraper", factor[e] design initiative, BY-CC 3.0', '<a href="http://thenounproject.com/term/star/21280/"</a>"Star", Nick Abrams, BY-CC 3.0'];
   $('#attribution').popover({
