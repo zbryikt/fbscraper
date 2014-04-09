@@ -36,6 +36,7 @@ html(lang="en")
             li.logon(ng-show="!accessToken"): a(href="#",ng-click="login()") Login
             li.logon.ng-hide(ng-show="accessToken"): a(href="#",ng-click="logout()") Logout
     #banner
+      .ibanner.delay(delay-bk="banner.jpg")
       .ib
         | Scrape Facebook Wall.
         br
