@@ -96,6 +96,7 @@ angular.module \core, <[ngAnimate]>
       '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">' +
       '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/index.css"></head><body>' +
       $(\#posts)html! + '</body></html>'
+      data-html = data-html.replace "display:none", ""
 
       # use base64 - cause chrome to crash, deprecated
       # base-json = btoa unescape encodeURIComponent data-json

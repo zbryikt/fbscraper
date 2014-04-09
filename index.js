@@ -151,6 +151,7 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     linkHtml = $('#download-html');
     dataJson = JSON.stringify($scope.wall);
     dataHtml = "<html><head><meta charset='utf-8'>" + '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">' + '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/index.css"></head><body>' + $('#posts').html() + '</body></html>';
+    dataHtml = dataHtml.replace("display:none", "");
     blobJson = new Blob([dataJson], {
       type: 'text/json'
     });
