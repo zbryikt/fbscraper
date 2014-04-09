@@ -199,7 +199,7 @@ html, body {
     width: 100%;
     height: 500px;
     top: 0;
-    left: 0;
+    left: 40px;
     background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==);
     background-attachment: fixed;
     background-position: top center; }
