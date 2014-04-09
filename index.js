@@ -10,7 +10,7 @@ x$.directive('delayBk', function(){
       return $('<img/>').attr('src', url).load(function(){
         $(this).remove();
         e.css({
-          background: "url(" + url + ")"
+          "background-image": "url(" + url + ")"
         });
         return e.toggleClass('visible');
       });

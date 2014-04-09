@@ -5,7 +5,7 @@ angular.module \core, <[ngAnimate]>
       url = attrs["delayBk"]
       $ \<img/> .attr \src url .load ->
         $(@)remove!
-        e.css background: "url(#url)"
+        e.css "background-image": "url(#url)"
         e.toggle-class \visible
   ..directive \loading, -> do
     restrict: \E
