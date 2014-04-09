@@ -194,6 +194,13 @@ html, body {
   width: 100%;
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0 3px 7px rgba(0, 0, 0, 0.7); }
+  #banner .ibanner-low {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    top: 40px;
+    left: 0;
+    background: url(banner-low.jpg) top center; }
   #banner .ibanner {
     position: absolute;
     width: 100%;
@@ -223,6 +230,16 @@ html, body {
     width: 0;
     opacity: 0;
     overflow: hidden; }
+  #banner .delay.ibanner {
+    -webkit-transition: none;
+    transition: none;
+    opacity: 1; }
+  #banner .delay.ibanner ~ .ibanner-low {
+    opacity: 1;
+    -webkit-transition: opacity 0.8s;
+    transition: opacity 0.8s; }
+  #banner .delay.ibanner.visible ~ .ibanner-low {
+    opacity: 0; }
 
 loading {
   width: 100px;
@@ -278,7 +295,7 @@ loading {
   -webkit-transition: opacity 0.8s;
   transition: opacity 0.8s; }
 
-.delay.visible, .delay.visible.dim {
+.delay.visible {
   opacity: 1; }
 
 #posts {
