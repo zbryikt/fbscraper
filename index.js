@@ -110,7 +110,7 @@ x$.controller('main', ['$scope', '$interval', '$http'].concat(function($scope, $
     return FB.login(function(){
       return getAccessToken();
     }, {
-      scope: ""
+      scope: "read_stream"
     });
   };
   getAccessToken();

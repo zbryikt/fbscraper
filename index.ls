@@ -68,7 +68,7 @@ angular.module \core, <[ngAnimate]>
     $scope.login = ->
       FB.login (-> 
         get-access-token!  
-      ), {scope: ""}
+      ), {scope: "read_stream"}
 
     get-access-token!
     $scope.start-get-wall = (is-me,scroll) ->
