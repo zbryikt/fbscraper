@@ -87,10 +87,26 @@ angular.module \core, <[ngAnimate]>
         $scope.page-id = page-id
         $scope.running = true
         $scope.finish = false
-        get-wall "https://graph.facebook.com/#{$scope.page-id}/feed?limit=50&access_token=#{$scope.access-token}"
+        get-wall "https://graph.facebook.com/#{$scope.page-id}/feed?fields=likes.summary(true),id,caption,created_time,description,from,icon,link,message,name,object_id,permalink_url,picture,place,shares,source,story,type,updated_time&limit=50&access_token=#{$scope.access-token}"
     $scope.generate-download = ->
+      link-csv = $(\#download-csv)
       link-json = $(\#download-json)
       link-html = $(\#download-html)
+      parsed-csv = $scope.wall.map((d) ->
+        if !d => return null
+        return do
+          name: d.{}from.name or "n/a"
+          message: d.message
+          likes: d.{}likes.{}summary.total_count or 0
+          shares: d.{}shares.count or 0
+          link: d.link
+          type: d.type
+          created_time: d.created_time
+          updated_time: d.updated_time
+          picture: d.picture
+      ).filter(->it)
+      keys = [k for k of (parsed-csv.0 or {})]
+      data-csv = ([keys.join(\,)] ++ parsed-csv.map((d)-> keys.map(->"\"#{d[it]}\"").join(\,))).join(\\n)
       data-json = JSON.stringify $scope.wall
       data-html = "<html><head><meta charset='utf-8'>" +
       '<link rel="stylesheet" type="text/css" href="http://fb.scrape4.me/assets/bootstrap/3.0.2/css/bootstrap.min.css">' +
@@ -105,10 +121,13 @@ angular.module \core, <[ngAnimate]>
       # link-html.attr \href, "data:application/octet-stream;charset=utf-8;base64,#{base-html}"
 
       # use blob url
+      blob-csv = new Blob [data-csv], type: 'text/csv'
       blob-json = new Blob [data-json], type: 'text/json'
       blob-html = new Blob [data-html], type: 'text/html'
+      path-csv = URL.createObjectURL blob-csv
       path-json = URL.createObjectURL blob-json
       path-html = URL.createObjectURL blob-html
+      link-csv.attr \href, path-csv
       link-json.attr \href, path-json
       link-html.attr \href, path-html
 

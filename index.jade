@@ -91,6 +91,8 @@ html(lang="en")
         .col-sm-6(style="text-align:left;margin-top: 1em",ng-show="finish")
           | Download As
           br
+          a#download-csv(download="wall.csv",href="#") CSV
+          |  |  
           a#download-json(download="wall.json",href="#") JSON
           |  |  
           a#download-html(download="wall.html",href="#") HTML
