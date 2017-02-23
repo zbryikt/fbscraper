@@ -1,0 +1,21 @@
+{
+  "author": "Kirby Wu",
+  "name": "Facebook Scraper",
+  "description": "Crawle Facebook Content",
+  "version": "0.0.1",
+  "homepage": "https://github.com/zbryikt/fbscraper",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zbryikt/fbscraper"
+  },
+  "engines": {
+    "node": ">=0.12.6",
+    "npm": ">=1.2.2"
+  },
+  "dependencies": {
+    "LiveScript": ">=1.3.0",
+    "bluebird": "=3.3.4",
+    "fs-extra": "=0.26.7",
+    "request": "=2.79.1"
+  }
+}
